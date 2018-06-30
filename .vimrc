@@ -77,7 +77,7 @@ let b:match_ignorecase = 1
 
 
 " -------------------
-" Vim-plug
+" Vim-plug(https://github.com/junegunn/vim-plug)
 " -------------------
 
 " 以下、導入するプラグインを記述
