@@ -71,6 +71,6 @@ nmap <esc><esc> :nohlsearch<CR><esc>
 " -------------------
 
 " if や for などの文字にも%で移動できるようにする
-source $VIMRUNTIME/macros/matshit.vim
+source $VIMRUNTIME/macros/matchit.vim
 let b:match_ignorecase = 1
 
