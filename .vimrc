@@ -12,8 +12,8 @@ filetype plugin indent on
 set t_Co=256
 " 色つけを on にする
 syntax on
-" カラースキーマを設定
-"colorscheme tender
+" 背景色を正しく描画する
+set t_ut=
 
 " ターミナルの右端で文字を折り返さない
 set nowrap
@@ -66,6 +66,7 @@ imap { {}<left>
 " 2回 esc を押したら検索のハイライトをやめる
 nmap <esc><esc> :nohlsearch<CR><esc>
 
+
 " -------------------
 " Matchit
 " -------------------
@@ -74,3 +75,27 @@ nmap <esc><esc> :nohlsearch<CR><esc>
 source $VIMRUNTIME/macros/matchit.vim
 let b:match_ignorecase = 1
 
+
+" -------------------
+" Vim-plug
+" -------------------
+
+" 以下、導入するプラグインを記述
+call plug#begin('~/.vim/plugged')
+
+" tender.vim のカラースキーマ
+Plug 'jacoborus/tender.vim'
+
+call plug#end()
+
+
+" -------------------
+" Tender.vim
+" -------------------
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" Tender.vim のカラースキーマを設定
+colorscheme tender
