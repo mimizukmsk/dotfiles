@@ -119,8 +119,9 @@ Plug 'cohama/lexima.vim'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 " ステータスライン強化
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 call plug#end()
 
 
