@@ -127,3 +127,6 @@ export DISPLAY=localhost:0.0
 
 # alias to mount I: HDD
 alias Mount='sudo mount -t drvfs I: /mnt/i'
+
+# launch wasel-pagent
+eval $(/mnt/c/Program\ Files\ \(x86\)/weasel-pageant/weasel-pageant -r -a "/tmp/.weasel-pageant-$USER")
