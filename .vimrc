@@ -31,9 +31,12 @@ set scrolloff=5
 " 対応括弧を3秒間ハイライト表示する
 set showmatch
 set matchtime=3
-
-" ハイライトサーチを有効化
-set hlsearch
+" バックスペースで前行の末尾に行く
+set backspace=indent,eol,start
+" インクリメントサーチを有効化
+set incsearch
+" ハイライトサーチを無効化
+set nohlsearch
 " 大文字小文字を区別しない
 set ignorecase
 " が、大文字を含んでいた場合は区別する
@@ -51,8 +54,8 @@ set history=10000
 set viminfo='100,/50,%,<1000,f50,s100,:100,c,h,!
 " ステータスラインを表示
 set laststatus=2
-" メッセージ表示欄
-set cmdheight=2
+" メッセージ表示欄の高さ
+"set cmdheight=2
 " カーソル位置が右下に表示される
 set ruler
 " 文字がない場所にもカーソルを移動できるようにする
@@ -96,6 +99,33 @@ nmap <esc><esc> :nohlsearch<CR><esc>
 
 
 " -------------------
+" シンタックスハイライト
+" -------------------
+" fot Python
+if version < 600
+  syntax clear
+elseif exists('b:current_after_syntax')
+  finish
+endif
+
+" We need nocompatible mode in order to continue lines with backslashes.
+" Original setting will be restored.
+let s:cpo_save = &cpo
+set cpo&vim
+
+syn match pythonOperator "\(+\|=\|-\|\^\|\*\)"
+syn match pythonDelimiter "\(,\|\.\|:\)"
+syn keyword pythonSpecialWord self
+
+hi link pythonSpecialWord    Special
+hi link pythonDelimiter      Special
+
+let b:current_after_syntax = 'python'
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
+
+" -------------------
 " Matchit
 " -------------------
 
@@ -119,9 +149,31 @@ Plug 'cohama/lexima.vim'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 " ステータスライン強化
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
+" 編集中のソースコードを実行
+Plug 'thinca/vim-quickrun'
+" オペレーター拡張
+Plug 'kana/vim-operator-user'
+" テキストオブジェクト拡張
+Plug 'kana/vim-textobj-user'
+" クリップボード内の文字列と入れ替える
+Plug 'kana/vim-operator-replace'
+" 文字列に対して括弧をつける/外す
+Plug 'rhysd/vim-operator-surround'
+
+" for Python
+
+" ソースコードの静的検査、スタイルチェックして赤くハイライト
+Plug 'andviro/flake8-vim'
+" Pythonのインデント周りを適正化
+Plug 'hynek/vim-python-pep8-indent'
+" vim内のPython環境とvirtualenvを連動
+Plug 'jmcantrell/vim-virtualenv'
+" インデント単位でテキストオブジェクトを操作
+Plug 'kana/vim-textobj-indent'
+" Pythonの関数/クラスをテキストオブジェクト化
+Plug 'bps/vim-textobj-python'
+
 call plug#end()
 
 
@@ -138,7 +190,19 @@ colorscheme tender
 
 
 " -------------------
-" Airline
+" lexima.vim
 " -------------------
-"
-let g:airline_powerline_fonts = 1
+
+call lexima#add_rule({'at': '\%#.*[-0-9a-zA-Z_,:]', 'char': '{', 'input': '{'})
+call lexima#add_rule({'at': '\%#\n\s*}', 'char': '}', 'input': '}', 'delete': '}'})
+
+
+" -------------------
+" vim-operator-surround
+" -------------------
+
+map <silent>sa <Plug>(operator-surround-append)
+map <silent>sd <Plug>(operator-surround-delete)
+map <silent>sr <Plug>(operator-surround-replace)
+
+
