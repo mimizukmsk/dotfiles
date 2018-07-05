@@ -99,6 +99,10 @@ nmap <esc><esc> :nohlsearch<CR><esc>
 
 
 " -------------------
+" for Python (vim)
+" -------------------
+
+" -------------------
 " シンタックスハイライト
 " -------------------
 " fot Python
@@ -144,7 +148,7 @@ call plug#begin('~/.vim/plugged')
 " tender.vim のカラースキーマ
 Plug 'jacoborus/tender.vim'
 " 括弧、クォーテーション補完
-Plug 'cohama/lexima.vim'
+"Plug 'cohama/lexima.vim'
 " スニペット
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -166,7 +170,7 @@ Plug 'rhysd/vim-operator-surround'
 " ソースコードの静的検査、スタイルチェックして赤くハイライト
 Plug 'andviro/flake8-vim'
 " Pythonのインデント周りを適正化
-Plug 'hynek/vim-python-pep8-indent'
+Plug 'Vimjas/vim-python-pep8-indent'
 " vim内のPython環境とvirtualenvを連動
 Plug 'jmcantrell/vim-virtualenv'
 " インデント単位でテキストオブジェクトを操作
@@ -193,8 +197,8 @@ colorscheme tender
 " lexima.vim
 " -------------------
 
-call lexima#add_rule({'at': '\%#.*[-0-9a-zA-Z_,:]', 'char': '{', 'input': '{'})
-call lexima#add_rule({'at': '\%#\n\s*}', 'char': '}', 'input': '}', 'delete': '}'})
+"call lexima#add_rule({'at': '\%#.*[-0-9a-zA-Z_,:]', 'char': '{', 'input': '{'})
+"call lexima#add_rule({'at': '\%#\n\s*}', 'char': '}', 'input': '}', 'delete': '}'})
 
 
 " -------------------
