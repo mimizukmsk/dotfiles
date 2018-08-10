@@ -57,9 +57,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -122,11 +122,12 @@ eval "$(rbenv init -)"
 
 export PATH=/home/mike/.rbenv/shims:/home/mike/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
-# set Display for VcXsrv
-export DISPLAY=localhost:0.0
-
 # alias to mount I: HDD
 alias Mount='sudo mount -t drvfs I: /mnt/i'
 
 # launch wasel-pagent
 eval $(/mnt/c/Program\ Files\ \(x86\)/weasel-pageant/weasel-pageant -r -a "/tmp/.weasel-pageant-$USER")
+
+# launch MySQL & Apache2
+alias launchserv='sudo service mysql start && sudo service apache2 start'
+alias stopserv='sudo service mysql stop && sudo service apache2 stop'

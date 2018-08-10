@@ -71,13 +71,10 @@ set laststatus=2
 "set cmdheight=2
 " カーソル位置が右下に表示される
 set ruler
-" 文字がない場所にもカーソルを移動できるようにする
-set virtualedit=all
 " 行番号を表示する
 set number
 " 不可視文字を表示
 set list
-set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
 " コマンドライン補完を強化
 set wildmenu
 set wildmode=list:longest
@@ -111,33 +108,3 @@ imap <C-j> <esc>
 nmap <esc><esc> :nohlsearch<CR><esc>
 
 
-" -------------------
-" for Python (vim)
-" -------------------
-
-" -------------------
-" シンタックスハイライト
-" -------------------
-" fot Python
-if version < 600
-  syntax clear
-elseif exists('b:current_after_syntax')
-  finish
-endif
-
-" We need nocompatible mode in order to continue lines with backslashes.
-" Original setting will be restored.
-let s:cpo_save = &cpo
-set cpo&vim
-
-syn match pythonOperator "\(+\|=\|-\|\^\|\*\)"
-syn match pythonDelimiter "\(,\|\.\|:\)"
-syn keyword pythonSpecialWord self
-
-hi link pythonSpecialWord    Special
-hi link pythonDelimiter      Special
-
-let b:current_after_syntax = 'python'
-
-let &cpo = s:cpo_save
-unlet s:cpo_save
