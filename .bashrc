@@ -120,7 +120,7 @@ eval "$(rbenv init -)"
 
 # split PATH from Windows
 
-export PATH=/home/mike/.rbenv/shims:/home/mike/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+export PATH=/home/mike/.rbenv/shims:/home/mike/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/sbin:$PATH
 
 # alias to mount I: HDD
 alias Mount='sudo mount -t drvfs I: /mnt/i'
@@ -129,5 +129,13 @@ alias Mount='sudo mount -t drvfs I: /mnt/i'
 eval $(/mnt/c/Program\ Files\ \(x86\)/weasel-pageant/weasel-pageant -r -a "/tmp/.weasel-pageant-$USER")
 
 # launch MySQL & Apache2
-alias launchserv='sudo service mysql start && sudo service apache2 start'
-alias stopserv='sudo service mysql stop && sudo service apache2 stop'
+alias launchserv='sudo service mysql start && sudo service nginx start && sudo service php7.0-fpm start'
+alias stopserv='sudo service mysql stop && sudo service nginx stop && sudo service php7.0-fpm stop'
+
+# set pyenv 
+export PATH="/home/mike/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# alias for docker
+alias d=docker
